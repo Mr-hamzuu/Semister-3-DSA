@@ -81,11 +81,12 @@ public class bitmanipulation {
         while (n!=0) {
             int bit=n&1;
             // thats formula 
-            int power=
+            
             ans=(bit*(int)Math.pow(10, i))+ans;
             n=n>>1;
             i++;
         }
         System.out.println("The binary form is : "+ans);
+        sc.close();
     }
 }

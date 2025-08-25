@@ -54,5 +54,6 @@ public class bit {
             int andop=Notop&5;
             System.out.println("The Result of 0 is "+andop);
         }
+        sc.close();
     }
 }

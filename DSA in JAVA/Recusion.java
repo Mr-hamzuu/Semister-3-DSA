@@ -77,6 +77,17 @@ public class Recusion {
         return stringreverse(s, newstr, idx);
     }
 
+    public static void permutation(String str,String perm,int idx){
+        if (str.length()==0) {
+            System.out.println(perm);
+            return;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            char curstr=str.charAt(i);
+            String newstr=str.substring(0, i)+str.substring(i+1);
+            permutation(newstr, perm+curstr, idx+1);
+        }
+    }
     public static void main(String[] args) {
         // print no from 1 to 5
         print1to5(1);
@@ -94,5 +105,9 @@ public class Recusion {
         // String reverse
         String s = "hamza";
         System.out.println(stringreverse(s, "", s.length()-1));
+        // permutation
+       permutation("ABC","",0);
+       String str="HAmxa";
+       System.out.println(str.substring(0,0));
     }
 }

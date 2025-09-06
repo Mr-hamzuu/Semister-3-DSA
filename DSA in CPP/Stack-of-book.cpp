@@ -15,7 +15,9 @@ struct stack
 };
 
 void push(stack &s,book &b){
-    s.arr[++s.top]=b;
+    ++s.top;
+    s.arr[s.top].name=b.name;
+    s.arr[s.top].price=b.price;
 }
 void display(stack &s){
     for (int i = 0; i <=s.top; i++)

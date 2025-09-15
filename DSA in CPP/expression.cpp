@@ -56,9 +56,7 @@ int precedence(char s)
     return 0;
 }
 
-void display(stack &s)
-{
-}
+
 int main()
 {
     stack s;

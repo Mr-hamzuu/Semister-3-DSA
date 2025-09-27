@@ -98,75 +98,76 @@
 //   return 0;
 // }
 
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
-int main()
-{
-  int arr[9] = {9, 4, 6, 2, 5, 1, 7, 3, 8};
-  int stack[50];
-  int top = -1;
+// int main()
+// {
+//   int arr[9] = {9, 4, 6, 2, 5, 1, 7, 3, 8};
+//   int stack[50];
+//   int top = -1;
 
-  stack[++top] = 0;
-  stack[++top] = 8; //{0,8}
+//   stack[++top] = 0;
+//   stack[++top] = 8; //{0,8}
 
-  cout << "Unsorted : ";
-  for (int i = 0; i < 9; i++)
-  {
-    cout << arr[i] << " ";
-  }
-  cout << endl;
+//   cout << "Unsorted : ";
+//   for (int i = 0; i < 9; i++)
+//   {
+//     cout << arr[i] << " ";
+//   }
+//   cout << endl;
 
-  while (top >= 0)
-  {
+//   while (top >= 0)
+//   {
 
-    int last = stack[top--];
-    int first = stack[top--];
-    int pivot = arr[first];
-    int up = first;
-    int down = last;
-    while (up < down)
-    {
+//     int last = stack[top--];
+//     int first = stack[top--];
+//     int pivot = arr[first];
+//     int up = first;
+//     int down = last;
+//     while (up < down)
+//     {
 
-      while (arr[down] > pivot && up < down)
-      {
-        down--;
-      }
-      while (arr[up] <= pivot && up < down)
-      {
-        up++;
-      }
+//       while (arr[down] > pivot && up < down)
+//       {
+//         down--;
+//       }
+//       while (arr[up] <= pivot && up < down)
+//       {
+//         up++;
+//       }
 
-      if (up < down)
-      {
-        int temp = arr[up];
-        arr[up] = arr[down];
-        arr[down] = temp;
-      }
-    }
-    
-    arr[first] = arr[up];
-    arr[up] = pivot;
-    
-    int pivotidx = up;
-    if (first < pivotidx - 1)
-    {
-      stack[++top] = first;
-      stack[++top] = pivotidx - 1;
-    
-    }
-    if (pivotidx + 1 < last)
-    {
-      stack[++top] = pivotidx + 1;
-      stack[++top] = last;
-    }
-  }
+//       if (up < down)
+//       {
+//         int temp = arr[up];
+//         arr[up] = arr[down];
+//         arr[down] = temp;
+//       }
+//     }
 
-  cout << "Sorted : ";
-  for (int i = 0; i < 9; i++)
-  {
-    cout << arr[i] << " ";
-  }
+//     arr[first] = arr[up];
+//     arr[up] = pivot;
 
-  return 0;
-}
+//     int pivotidx = up;
+//     if (first < pivotidx - 1)
+//     {
+//       stack[++top] = first;
+//       stack[++top] = pivotidx - 1;
+//     }
+//     if (pivotidx + 1 < last)
+//     {
+//       stack[++top] = pivotidx + 1;
+//       stack[++top] = last;
+//     }
+//   }
+
+//   cout << "Sorted : ";
+//   for (int i = 0; i < 9; i++)
+//   {
+//     cout << arr[i] << " ";
+//   }
+
+//   return 0;
+// }
+
+

@@ -69,7 +69,7 @@ public class Recusion {
     }
 
     public static String stringreverse(String s, String newstr, int idx) {
-        if (idx <0) {
+        if (idx < 0) {
             return newstr;
         }
         newstr += s.charAt(idx);
@@ -77,17 +77,18 @@ public class Recusion {
         return stringreverse(s, newstr, idx);
     }
 
-    public static void permutation(String str,String perm,int idx){
-        if (str.length()==0) {
+    public static void permutation(String str, String perm, int idx) {
+        if (str.length() == 0) {
             System.out.println(perm);
             return;
         }
         for (int i = 0; i < str.length(); i++) {
-            char curstr=str.charAt(i);
-            String newstr=str.substring(0, i)+str.substring(i+1);
-            permutation(newstr, perm+curstr, idx+1);
+            char curstr = str.charAt(i);
+            String newstr = str.substring(0, i) + str.substring(i + 1);
+            permutation(newstr, perm + curstr, idx + 1);
         }
     }
+
     public static void main(String[] args) {
         // print no from 1 to 5
         print1to5(1);
@@ -104,10 +105,10 @@ public class Recusion {
         towerofhanoi(3, "source", "helper", "destination");
         // String reverse
         String s = "hamza";
-        System.out.println(stringreverse(s, "", s.length()-1));
+        System.out.println(stringreverse(s, "", s.length() - 1));
         // permutation
-       permutation("ABC","",0);
-       String str="HAmxa";
-       System.out.println(str.substring(0,0));
+        permutation("ABC", "", 0);
+        String str = "HAmxa";
+        System.out.println(str.substring(0, 0));
     }
 }

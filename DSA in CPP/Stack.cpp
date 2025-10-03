@@ -56,6 +56,7 @@ void pop(stack &s, int idx)
     s.top--;
 }
 
+
 void display(const stack &s)
 {
     for (int i = 0; i <= s.top; i++)

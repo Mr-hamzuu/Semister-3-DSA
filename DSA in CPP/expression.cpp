@@ -56,7 +56,6 @@ int precedence(char s)
     return 0;
 }
 
-
 int main()
 {
     stack s;

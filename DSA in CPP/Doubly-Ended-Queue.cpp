@@ -26,7 +26,8 @@ void push_front(Dbl_Queue &q, int n)
         cout << "Queue is full" << endl;
         return;
     }
-      if (isempty(q)) {   // first element
+    if (isempty(q))
+    { // first element
         q.front = q.rear = 0;
     }
     if (q.front == 0)
@@ -70,7 +71,8 @@ void push_back(Dbl_Queue &q, int n)
         cout << "Queue is Full" << endl;
         return;
     }
-      if (isempty(q)) {   // first element
+    if (isempty(q))
+    { // first element
         q.front = q.rear = 0;
     }
     if (q.rear == q_size - 1)
@@ -106,8 +108,10 @@ int pop_back(Dbl_Queue &q)
     }
     return value;
 }
-void display(Dbl_Queue &q) {
-    if (isempty(q)) {
+void display(Dbl_Queue &q)
+{
+    if (isempty(q))
+    {
         cout << "Queue is empty\n";
         return;
     }
@@ -115,9 +119,11 @@ void display(Dbl_Queue &q) {
     cout << "Queue elements: ";
     int i = q.front;
 
-    for (;;) {
+    for (;;)
+    {
         cout << q.arr[i] << " ";
-        if (i == q.rear) break;   // stop at rear
+        if (i == q.rear)
+            break; // stop at rear
 
         // move forward circularly
         if (i == q_size - 1)
@@ -133,22 +139,104 @@ int main()
     Dbl_Queue q;
     q.front = -1;
     q.rear = -1;
-    push_front(q, 1);
-    push_front(q, 2);
-    push_front(q, 3);
-    push_front(q, 14);
-    push_front(q, 14);
-    push_front(q, 14);
-    push_front(q, 5);
-    push_front(q, 14);
-  
-    push_back(q, 14);
-    display(q);
-    pop_front(q);
-    display(q);
-    push_back(q, 14);
-    display(q);
-    pop_back(q);
-    display(q);
+    do
+    {
+        cout << "1.Input Restricted" << endl;
+        cout << "2.Output Restricted" << endl;
+        cout << "3.Display" << endl;
+        cout << "4.Exit" << endl;
+        int x, n, y, z;
+        cin >> x;
+        switch (x)
+        {
+        case 1:
+            cout << "*************************** Input Restricted *************************" << endl;
+            cout << "1.Insertion" << endl;
+            cout << "2.Removal" << endl;
+            cout << "3.Exit" << endl;
+
+            cin >> n;
+            switch (n)
+            {
+            case 1:
+
+                cout << "Enter the value you want to enter";
+                cin >> y;
+                push_back(q, y);
+                break;
+            case 2:
+                cout << "1.Remove From front" << endl;
+                cout << "2.Remove From Rear" << endl;
+                cout << "3.Exit" << endl;
+
+                cin >> z;
+                switch (z)
+                {
+                case 1:
+                   
+                    cout << "Successfully popped from front : " <<pop_front(q)<< endl;
+                    break;
+                case 2:
+                   
+                    cout << "Successfully popped from back : " << pop_back(q)<< endl;
+                    break;
+                case 3:
+                    exit(0);
+                default:
+                    cout << "Invalid!!" << endl;
+                    break;
+                }
+                break;
+            }
+            break;
+        case 2:
+            cout << "*************************** Output Restricted *************************" << endl;
+            cout << "1.Insertion" << endl;
+            cout << "2.Removal" << endl;
+            cout << "3.Exit" << endl;
+            cin >> n;
+            switch (n)
+            {
+            case 1:
+                cout << "Enter the value you want to enter";
+                cin >> y;
+                cout << "1.Insert From front" << endl;
+                cout << "2.Insert From Rear" << endl;
+
+                cin >> z;
+                switch (z)
+                {
+                case 1:
+                    push_front(q, y);
+                    break;
+                case 2:
+                    push_back(q, y);
+                    break;
+                default:
+                    cout << "Invalid!!" << endl;
+                    break;
+                }
+                break;
+            case 2:
+              
+                cout << "Successfully popped from front : "<<  pop_front(q) << endl;
+                break;
+            case 3:
+                exit(0);
+            default:
+                cout << "Invalid!!" << endl;
+                break;
+            }
+            break;
+        case 3:
+            display(q);
+            break;
+        case 4:
+            exit(0);
+        default:
+            break;
+        }
+    } while (true);
+
     return 0;
 }

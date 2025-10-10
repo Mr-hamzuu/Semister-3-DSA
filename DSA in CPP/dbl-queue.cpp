@@ -2,24 +2,24 @@
 using namespace std;
 
 const int q_size = 10;
-struct Dbl_Queue
+struct dbl_queue
 {
     int arr[q_size];
     int front;
     int rear;
 };
 
-bool isempty(Dbl_Queue &q)
+bool isempty(dbl_queue &q)
 {
-    return (q.front == -1);
+    return q.front == -1;
 }
-bool isfull(Dbl_Queue &q)
+bool isfull(dbl_queue &q)
 {
-    return ((q.front == 0 && q.rear == q_size - 1) || (q.rear + 1 == q.front));
+    return ((q.front == 0 && q.rear == q_size - 1) || q.rear + 1 == q.front);
 }
 
-// Front Fucntions
-void push_front(Dbl_Queue &q, int n)
+// Push Functions
+void push_rear(dbl_queue &q, int n)
 {
     if (isfull(q))
     {
@@ -27,58 +27,13 @@ void push_front(Dbl_Queue &q, int n)
         return;
     }
     if (isempty(q))
-    { // first element
-        q.front = q.rear = 0;
-         q.arr[q.front] = n;
-         return;
-    }
-    if (q.front == 0)
     {
-        q.front = q_size - 1;
-    }
-    else
-    {
-        q.front--;
-    }
-    q.arr[q.front] = n;
-}
-int pop_front(Dbl_Queue &q)
-{
-    if (isempty(q))
-    {
-        cout << "Queue is empty" << endl;
-        return -1;
-    }
-    int value = q.arr[q.front];
-    if (q.front == q.rear)
-    {
-        q.front = q.rear = -1;
-    }
-    else if (q.front == q_size - 1)
-    {
+        q.rear = 0;
         q.front = 0;
-    }
-    else
-    {
-        q.front++;
-    }
-    return value;
-}
-
-// Rear Functions
-void push_back(Dbl_Queue &q, int n)
-{
-    if (isfull(q))
-    {
-        cout << "Queue is Full" << endl;
+        q.arr[q.rear] = n;
         return;
     }
-    if (isempty(q))
-    { // first element
-        q.front = q.rear = 0;
-         q.arr[q.rear] = n;
-         return;
-    }
+
     if (q.rear == q_size - 1)
     {
         q.rear = 0;
@@ -89,58 +44,109 @@ void push_back(Dbl_Queue &q, int n)
     }
     q.arr[q.rear] = n;
 }
+void push_front(dbl_queue &q, int n)
+{
+    if (isfull(q))
+    {
+        cout << "Queue is full" << endl;
+        return;
+    }
+    if (isempty(q))
+    {
+        q.rear = 0;
+        q.front = 0;
+        q.arr[q.rear] = n;
+        return;
+    }
 
-int pop_back(Dbl_Queue &q)
+    if (q.front == 0)
+    {
+        q.front = q_size - 1;
+    }
+    else
+    {
+        q.front--;
+    }
+    q.arr[q.front] = n;
+}
+
+// Pop Functions
+int pop_front(dbl_queue &q)
 {
     if (isempty(q))
     {
-        cout << "Queue is Empty" << endl;
+        cout << "Queue is empty" << endl;
         return -1;
     }
-    int value = q.arr[q.rear];
-    if (q.rear == 0)
+    int data = q.arr[q.front];
+    if (q.front == q.rear)
+    {
+        q.front = -1;
+        q.rear = -1;
+    }
+    else if (q.front == q_size - 1)
+    {
+        q.front = 0;
+    }
+    else
+    {
+        q.front++;
+    }
+    return data;
+}
+int pop_rear(dbl_queue &q)
+{
+    if (isempty(q))
+    {
+        cout << "Queue is empty" << endl;
+        return -1;
+    }
+    int data = q.arr[q.rear];
+    if (q.front == q.rear)
+    {
+        q.front = -1;
+        q.rear = -1;
+    }
+    else if (q.rear == 0)
     {
         q.rear = q_size - 1;
-    }
-    else if (q.rear == q.front)
-    {
-        q.rear = q.front = -1;
     }
     else
     {
         q.rear--;
     }
-    return value;
+    return data;
 }
-void display(Dbl_Queue &q)
+
+void display(dbl_queue &q)
 {
     if (isempty(q))
     {
-        cout << "Queue is empty\n";
+        cout << "Queue is Empty" << endl;
         return;
     }
-
-    cout << "Queue elements: ";
-    int i = q.front;
-
-    for (;;)
+    cout << "Double Ended Queue : ";
+    int idx = q.front;
+    while (true)
     {
-        cout << q.arr[i] << " ";
-        if (i == q.rear)
-            break; // stop at rear
-
-        // move forward circularly
-        if (i == q_size - 1)
-            i = 0;
+        cout << q.arr[idx] << " ";
+        if (idx == q.rear)
+        {
+            break;
+        }
+        if (idx == q_size - 1)
+        {
+            idx = 0;
+        }
         else
-            i++;
+            idx++;
     }
     cout << endl;
 }
-
 int main()
 {
-    Dbl_Queue q;
+
+    dbl_queue q;
     q.front = -1;
     q.rear = -1;
     do
@@ -166,7 +172,7 @@ int main()
 
                 cout << "Enter the value you want to enter";
                 cin >> y;
-                push_back(q, y);
+                push_rear(q, y);
                 break;
             case 2:
                 cout << "1.Remove From front" << endl;
@@ -177,12 +183,12 @@ int main()
                 switch (z)
                 {
                 case 1:
-                   
-                    cout << "Successfully popped from front : " <<pop_front(q)<< endl;
+
+                    cout << "Successfully popped from front : " << pop_front(q) << endl;
                     break;
                 case 2:
-                   
-                    cout << "Successfully popped from back : " << pop_back(q)<< endl;
+
+                    cout << "Successfully popped from back : " << pop_rear(q) << endl;
                     break;
                 case 3:
                     exit(0);
@@ -211,10 +217,18 @@ int main()
                 switch (z)
                 {
                 case 1:
-                    push_front(q, y);
-                    break;
+                    if (isempty(q))
+                    {
+                        cout << "Cannot push from front bcz Queue is empty" << endl;
+                        break;
+                    }
+                    else
+                    {
+                        push_front(q, y);
+                        break;
+                    }
                 case 2:
-                    push_back(q, y);
+                    push_rear(q, y);
                     break;
                 default:
                     cout << "Invalid!!" << endl;
@@ -222,8 +236,8 @@ int main()
                 }
                 break;
             case 2:
-              
-                cout << "Successfully popped from front : "<<  pop_front(q) << endl;
+
+                cout << "Successfully popped from front : " << pop_front(q) << endl;
                 break;
             case 3:
                 exit(0);

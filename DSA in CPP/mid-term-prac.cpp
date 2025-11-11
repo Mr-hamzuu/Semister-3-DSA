@@ -139,7 +139,7 @@
 //     return 0;
 // }
 
-// ********************** Linear Queue ******************************
+// ************************************ Linear Queue ******************************************
 
 // #include <iostream>
 // using namespace std;
@@ -209,7 +209,7 @@
 //     return 0;
 // }
 
-// ********************** circular queue **********************
+// ************************************** circular queue ***********************************
 
 // #include <iostream>
 // using namespace std;
@@ -596,7 +596,7 @@
 
 
 
-// ************************************** vehicle and parking stack and queue ***************************************
+// ********************************** vehicle and parking stack and queue ********************************
 // #include <iostream>
 // using namespace std;
 

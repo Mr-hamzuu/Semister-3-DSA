@@ -1,3 +1,5 @@
+
+//******************* */ STACK Linked list ******************************
 #include<iostream>
 using namespace std;
 
@@ -37,6 +39,7 @@ class Stacklist{
         if (top==nullptr)
         {
             cout<<"Stacklist is empty"<<endl;
+ return;
         }
         else{
             Node *temp=top;
@@ -60,3 +63,5 @@ int main()
     l.display();
     return 0;
 }
+
+

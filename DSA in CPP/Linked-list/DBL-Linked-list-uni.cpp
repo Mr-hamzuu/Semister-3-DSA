@@ -102,7 +102,7 @@ public:
     {
         if (rear == nullptr)
         {
-            cout << "Stacklist is empty" << endl;
+            cout << "Queuelist is empty" << endl;
         }
         else
         {

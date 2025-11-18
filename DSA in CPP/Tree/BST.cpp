@@ -73,6 +73,31 @@ public:
         displayPostorder(temp->right);
         cout << temp->data << " ";
     }
+    bool search(int x)
+    {
+        if (root == nullptr)
+        {
+            cout << "Tree is empty" << endl;
+            return false;
+        }
+        Node *temp = root;
+        while (temp != nullptr)
+        {
+            if (temp->data == x)
+            {
+                return true;
+            }
+            if (x < temp->data)
+            {
+                temp = temp->left;
+            }
+            else
+            {
+                temp = temp->right;
+            }
+        }
+        return false;
+    }
 
     Node *getRoot()
     {
@@ -91,10 +116,18 @@ int main()
     b.insert(75);
     Node *n = b.getRoot();
     b.displayPreorder(n);
-    cout<<endl;
+    cout << endl;
     b.displayInorder(n);
-    cout<<endl;
+    cout << endl;
     b.displayPostorder(n);
+    cout << endl;
+    // search value in Tree
+    if (b.search(5))
+    {
+        cout << "Value found" << endl;
+    }
+    else
+        cout << "Value Not found" << endl;
 
     return 0;
 }

@@ -55,6 +55,24 @@ public:
         displayPreorder(temp->left);
         displayPreorder(temp->right);
     }
+    void displayInorder(Node *temp)
+    {
+        if (temp == nullptr)
+            return;
+
+        displayInorder(temp->left);
+        cout << temp->data << " ";
+        displayInorder(temp->right);
+    }
+    void displayPostorder(Node *temp)
+    {
+        if (temp == nullptr)
+            return;
+
+        displayPostorder(temp->left);
+        displayPostorder(temp->right);
+        cout << temp->data << " ";
+    }
 
     Node *getRoot()
     {
@@ -73,6 +91,10 @@ int main()
     b.insert(75);
     Node *n = b.getRoot();
     b.displayPreorder(n);
+    cout<<endl;
+    b.displayInorder(n);
+    cout<<endl;
+    b.displayPostorder(n);
 
     return 0;
 }

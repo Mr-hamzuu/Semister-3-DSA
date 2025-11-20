@@ -98,7 +98,59 @@ public:
         }
         return false;
     }
+    int largestvalue(Node *temp)
+    {
+        while (temp->right != nullptr)
+        {
+            temp = temp->right;
+        }
+        return temp->data;
+    }
+    int smallestvalue(Node *temp)
+    {
+        while (temp->left != nullptr)
+        {
+            temp = temp->left;
+        }
+        return temp->data;
+    }
+    
+    Node* deletevalue(Node* root, int key) {
+    if (root == NULL) return NULL;
 
+    if (key < root->data) {
+        root->left = deletevalue(root->left, key);
+    }
+    else if (key > root->data) {
+        root->right = deletevalue(root->right, key);
+    }
+    else {  
+        if (root->left == NULL && root->right == NULL) {
+            delete root;
+            return NULL;
+        }
+
+        if (root->left == NULL) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if (root->right == NULL) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        Node* temp = root->right;
+        while (temp->left != NULL) {
+            temp = temp->left;
+        }
+        
+        root->data = temp->data;
+        root->right = deletevalue(root->right, temp->data); 
+    }
+    return root;
+}
     Node *getRoot()
     {
         return root;
@@ -128,6 +180,9 @@ int main()
     }
     else
         cout << "Value Not found" << endl;
-
+    cout << b.largestvalue(n) << endl;
+    cout << b.smallestvalue(n) << endl;
+    b.deletevalue(n,65);
+    b.displayInorder(n);
     return 0;
 }

@@ -115,42 +115,51 @@ public:
         return temp->data;
     }
     
-    Node* deletevalue(Node* root, int key) {
-    if (root == NULL) return NULL;
+    Node* deleteNode(Node* root, int key) {
+    if (root == NULL)
+        return NULL;
 
+    // Search the node
     if (key < root->data) {
-        root->left = deletevalue(root->left, key);
+        root->left = deleteNode(root->left, key);
     }
     else if (key > root->data) {
-        root->right = deletevalue(root->right, key);
+        root->right = deleteNode(root->right, key);
     }
-    else {  
+    else {  // Key found
+
+        // Case 1: No child
         if (root->left == NULL && root->right == NULL) {
             delete root;
             return NULL;
         }
 
+        // Case 2: One child (right)
         if (root->left == NULL) {
-            Node* temp = root->right;
+            Node* child = root->right;
             delete root;
-            return temp;
-        }
-        else if (root->right == NULL) {
-            Node* temp = root->left;
-            delete root;
-            return temp;
+            return child;
         }
 
+        // Case 2: One child (left)
+        if (root->right == NULL) {
+            Node* child = root->left;
+            delete root;
+            return child;
+        }
+
+        // Case 3: Two children
         Node* temp = root->right;
-        while (temp->left != NULL) {
+        while (temp->left != NULL) {  // Find smallest in right subtree
             temp = temp->left;
         }
-        
-        root->data = temp->data;
-        root->right = deletevalue(root->right, temp->data); 
+
+        root->data = temp->data;  // Replace with next bigger value
+        root->right = deleteNode(root->right, temp->data);
     }
     return root;
 }
+
     Node *getRoot()
     {
         return root;
@@ -182,7 +191,7 @@ int main()
         cout << "Value Not found" << endl;
     cout << b.largestvalue(n) << endl;
     cout << b.smallestvalue(n) << endl;
-    b.deletevalue(n,65);
+    b.deleteNode(n,65);
     b.displayInorder(n);
     return 0;
 }
